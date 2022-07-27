@@ -50,7 +50,8 @@ if sidebar_button_clicked:
             st.header(f"⏳ {timer}")
             time.sleep(1)
             mod_timer -= 1
-            st.success("🔔 " + str(selected_mod_timer) + " minutes is over! Time for a break!")
+            st.balloons()
+            st.success("🔔 " + str(selected_mod_timer) + " minute(s) dedicated work is over! Time for a break!")
 
     with st.empty():
         while mod_break:
@@ -61,4 +62,5 @@ if sidebar_button_clicked:
             st.header(f"⏳ {timer2}")
             time.sleep(1)
             mod_break -= 1
-            st.error("⏰ " + str(selected_mod_break) + " minute break is over!")
+            st.snow()
+            st.error("⏰ " + str(selected_mod_break) + " minute(s) break is over!")
