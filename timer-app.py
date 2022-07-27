@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+from playsound import playsound
 
 def local_css(file_name):
     with open(file_name) as f:
@@ -7,12 +8,19 @@ def local_css(file_name):
 
 local_css("style.css")
 
+#audio_alarm_file = open('clock-alarm.mp3', 'rb')
+#audio_alarm_bytes = audio_alarm_file.read()
+#audio_break_file = open('croworraven.mp3', 'rb')
+#audio_break_bytes = audio_alarm_file.read()
+
+
 st.write('''
 # The Timer Application
 
-Let's do some focus work. The default timer is 25 mins with a follow 5 mins break!
-
+Let's do some focus work. The default timer is **25 mins** with a follow **5 mins** break!
+Choose the custom timer on the side if needed.
 ''')
+
 mod_timer = int(st.sidebar.number_input('Enter desired timer'))*60
 mod_break = int(st.sidebar.number_input('Enter desired break'))*60
 sidebar_button_clicked = st.sidebar.button('Start the cumtom')
@@ -30,6 +38,8 @@ if button_clicked:
             time.sleep(1)
             t1 -= 1
             st.success("🔔 25 minutes is over! Time for a break!")
+        st.balloons()
+        playsound('clock-alarm.mp3')
 
     with st.empty():
         while t2:
@@ -40,6 +50,8 @@ if button_clicked:
             time.sleep(1)
             t2 -= 1
             st.error("⏰ 5 minute break is over!")
+        st.snow()
+        playsound('croworraven.mp3')
 
 if sidebar_button_clicked:
     with st.empty():
@@ -49,9 +61,12 @@ if sidebar_button_clicked:
             timer = '{:02d}:{:02d}'.format(mins, secs)
             st.header(f"⏳ {timer}")
             time.sleep(1)
-            mod_timer -= 1
-            st.balloons()
+            mod_timer -= 1                                       
             st.success("🔔 " + str(selected_mod_timer) + " minute(s) dedicated work is over! Time for a break!")
+        st.balloons()
+        #st.audio(audio_alarm_bytes, format='audio/mp3')
+        playsound('clock-alarm.mp3')
+
 
     with st.empty():
         while mod_break:
@@ -61,6 +76,7 @@ if sidebar_button_clicked:
             timer2 = '{:02d}:{:02d}'.format(mins2, secs2)
             st.header(f"⏳ {timer2}")
             time.sleep(1)
-            mod_break -= 1
-            st.snow()
+            mod_break -= 1            
             st.error("⏰ " + str(selected_mod_break) + " minute(s) break is over!")
+        st.snow()
+        playsound('croworraven.mp3')
