@@ -13,8 +13,9 @@ st.write('''
 Let's do some focus work. The default timer is 25 mins with a follow 5 mins break!
 
 ''')
-mod_t = int(st.sidebar.number_input('Enter desired timer'))*60
-sidebar_button_clicked = st.sidebar.button('Start the cumtom timer')
+mod_timer = int(st.sidebar.number_input('Enter desired timer'))*60
+mod_break = int(st.sidebar.number_input('Enter desired break'))*60
+sidebar_button_clicked = st.sidebar.button('Start the cumtom')
 button_clicked = st.button("Start")
 
 t1 = 1500
@@ -42,20 +43,20 @@ if button_clicked:
 
 if sidebar_button_clicked:
     with st.empty():
-        while mod_t:
-            mins, secs = divmod(mod_t, 60)
+        while mod_timer:
+            mins, secs = divmod(mod_timer, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
             st.header(f"⏳ {timer}")
             time.sleep(1)
-            mod_t -= 1
-            st.success("🔔 " + str(mod_t) + " minutes is over! Time for a break!")
+            mod_timer -= 1
+            st.success("🔔 " + str(mod_timer) + " minutes is over! Time for a break!")
 
     with st.empty():
-        while t2:
+        while mod_break:
             # Start the break
-            mins2, secs2 = divmod(t2, 60)
+            mins2, secs2 = divmod(mod_break, 60)
             timer2 = '{:02d}:{:02d}'.format(mins2, secs2)
             st.header(f"⏳ {timer2}")
             time.sleep(1)
-            t2 -= 1
-            st.error("⏰ 5 minute break is over!")
+            mod_break -= 1
+            st.error("⏰ " + str(mod_break) + " minute break is over!")
