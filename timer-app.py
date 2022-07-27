@@ -44,19 +44,21 @@ if button_clicked:
 if sidebar_button_clicked:
     with st.empty():
         while mod_timer:
+            selected_mod_timer = mod_timer
             mins, secs = divmod(mod_timer, 60)
             timer = '{:02d}:{:02d}'.format(mins, secs)
             st.header(f"⏳ {timer}")
             time.sleep(1)
             mod_timer -= 1
-            st.success("🔔 " + str(mod_timer) + " minutes is over! Time for a break!")
+            st.success("🔔 " + str(selected_mod_timer) + " minutes is over! Time for a break!")
 
     with st.empty():
         while mod_break:
             # Start the break
+            selected_mod_break = mod_break
             mins2, secs2 = divmod(mod_break, 60)
             timer2 = '{:02d}:{:02d}'.format(mins2, secs2)
             st.header(f"⏳ {timer2}")
             time.sleep(1)
             mod_break -= 1
-            st.error("⏰ " + str(mod_break) + " minute break is over!")
+            st.error("⏰ " + str(selected_mod_break) + " minute break is over!")
