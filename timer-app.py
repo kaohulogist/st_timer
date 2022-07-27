@@ -8,12 +8,6 @@ def local_css(file_name):
 
 local_css("style.css")
 
-#audio_alarm_file = open('clock-alarm.mp3', 'rb')
-#audio_alarm_bytes = audio_alarm_file.read()
-#audio_break_file = open('croworraven.mp3', 'rb')
-#audio_break_bytes = audio_alarm_file.read()
-
-
 st.write('''
 # The Timer Application
 
@@ -64,7 +58,6 @@ if sidebar_button_clicked:
             mod_timer -= 1                                       
             st.success("🔔 " + str(selected_mod_timer) + " minute(s) dedicated work is over! Time for a break!")
         st.balloons()
-        #st.audio(audio_alarm_bytes, format='audio/mp3')
         playsound('clock-alarm.mp3')
 
 
